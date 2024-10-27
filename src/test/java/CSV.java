@@ -1,12 +1,18 @@
 import org.apache.commons.csv.*;
-import org.junit.Test;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class CSV {
     @Test
+    @Order(1)
     public void readCSV() throws IOException {
         // read and print all information from csv file
         String csvFilePath = "data.csv";
@@ -23,6 +29,7 @@ public class CSV {
     }
 
     @Test
+    @Order(2)
     public void readLine6() throws IOException {
         String csvFilePath = "data.csv";
         Reader reader = new FileReader(csvFilePath);
@@ -44,6 +51,7 @@ public class CSV {
     }
 
     @Test
+    @Order(3)
     public void findFilmsAfter2007() throws IOException {
         String csvFilePath = "data.csv";
         Reader reader = new FileReader(csvFilePath);
@@ -68,6 +76,7 @@ public class CSV {
     }
 
     @Test
+    @Order(4)
     public void addDataToCSV() throws IOException {
         String csvFilePath = "data.csv";
         int lineCountBefore = countLines(csvFilePath);
@@ -79,7 +88,7 @@ public class CSV {
         bufferedWriter.close();
         // Reset the reader's position
         int lineCountAfter = countLines(csvFilePath);
-        assertEquals(lineCountBefore + 1, lineCountAfter);
+        assertEquals(lineCountBefore +1, lineCountAfter);
     }
 
     private int countLines(String filePath) throws IOException {
@@ -93,6 +102,7 @@ public class CSV {
     }
 
     @Test
+    @Order(5)
     public void deleteInformationFromCSV() throws IOException {
         // delete last line
         String csvFilePath = "data.csv";
